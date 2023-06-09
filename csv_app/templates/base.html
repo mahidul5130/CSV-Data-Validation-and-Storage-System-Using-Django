@@ -4,6 +4,12 @@
     <title>CSV Upload</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'upload_csv' %}">Upload CSV</a></li>
+            <li><a href="{% url 'list_users' %}">User List</a></li>
+        </ul>
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>
