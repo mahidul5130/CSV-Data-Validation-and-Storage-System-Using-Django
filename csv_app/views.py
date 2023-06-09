@@ -59,10 +59,38 @@ def is_valid_bangladeshi_phone_number(phone_number):
 
     return is_valid
 
-def search_users(request):
-    query = request.GET.get('q', '')  # Set default query value to an empty string
+from django.db.models import Q
+
+from django.db.models import Q
+
+from django.db.models import Q
+from django.shortcuts import redirect
+
+from django.db.models import Q
+
+def list_users(request):
+    query = request.GET.get('q', '')
+    filter_name = request.GET.get('name', '')
+    filter_email = request.GET.get('email', '')
+    filter_phone_number = request.GET.get('phone_number', '')
+    filter_gender = request.GET.get('gender', '')
+    filter_address = request.GET.get('address', '')
+
+    users = User.objects.all()
+
+    if filter_name:
+        users = users.filter(name__icontains=filter_name)
+    if filter_email:
+        users = users.filter(email__icontains=filter_email)
+    if filter_phone_number:
+        users = users.filter(phone_number__icontains=filter_phone_number)
+    if filter_address:
+        users = users.filter(address__icontains=filter_address)
+
+    if filter_gender:
+        users = users.filter(gender__iexact=filter_gender)
+
     if query:
-        users = User.objects.filter(name__icontains=query)
-    else:
-        users = User.objects.none()  # Return an empty QuerySet if query is None or empty string
-    return render(request, 'csv_app/search_users.html', {'users': users, 'query': query})
+        users = users.filter(name__icontains=query)
+
+    return render(request, 'csv_app/list_users.html', {'users': users, 'query': query})
