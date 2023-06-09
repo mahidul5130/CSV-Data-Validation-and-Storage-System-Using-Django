@@ -43,22 +43,17 @@ To run the CSV Data Validation and Storage System locally, follow these steps:
    source env/bin/activate
    ```
 
-4. **Install the required dependencies** by executing the following command:
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-5. **Apply database migrations** to set up the required database schema:
+4. **Apply database migrations** to set up the required database schema:
    ```shell
    python manage.py migrate
    ```
 
-6. **Start the development server** to run the application locally:
+5. **Start the development server** to run the application locally:
    ```shell
    python manage.py runserver
    ```
 
-7. **Open your web browser** and navigate to `http://localhost:8000` to access the application.
+6. **Open your web browser** and navigate to `http://localhost:8000` to access the application.
 
 Congratulations! You have successfully installed and configured the CSV Data Validation and Storage System on your local machine.
 
