@@ -1,6 +1,6 @@
 # CSV Data Validation and Storage System
 
-![CSV Data Validation and Storage System](screenshot.png)
+![CSV Data Validation and Storage System](screenshots\home.png)
 
 The CSV Data Validation and Storage System is a web application developed using Django, a Python web framework. It provides a robust solution for validating and storing CSV (Comma-Separated Values) files containing user data. This README.md document serves as comprehensive documentation for the project, outlining its features, installation instructions, usage guide, and more.
 
@@ -113,21 +113,25 @@ Here are some screenshots of the CSV Data Validation and Storage System in actio
 
 *Screenshot: Uploading a CSV file containing user data.*
 
-![Summary Report](screenshots/summary_report.png)
+![Summary Report](screenshots/summary.png)
 
 *Screenshot: Summary report showing statistics of the uploaded data.*
 
-![Duplicate Rows](screenshots/duplicate_rows.png)
-
-*Screenshot: List of duplicate rows identified in the uploaded CSV file.*
-
-![Invalid Rows](screenshots/invalid_rows.png)
-
-*Screenshot: List of invalid rows in the uploaded CSV file.*
-
-![List Users](screenshots/list_users.png)
+![List Users](screenshots/user_list.png)
 
 *Screenshot: User list page displaying stored user data.*
+
+![Upload another CSV File](screenshots/upload_another_csv.png)
+
+*Screenshot: Uploading another CSV file containing user data.*
+
+![Summary Report of another CSV File](screenshots/summary_another_csv.png)
+
+*Screenshot: Summary report showing statistics of the uploaded data of another CSV file.*
+
+![List Users after Uploading another CSV File](screenshots/user_list_another_csv.png)
+
+*Screenshot: User list page displaying stored user data after uploading another CSV file.*
 
 ## Contributing
 Contributions to the CSV Data Validation and Storage System are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on the GitHub repository. If you'd like to contribute code, you can
