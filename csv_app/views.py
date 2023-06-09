@@ -30,10 +30,15 @@ def upload_csv(request):
                     total_incomplete += 1
                     continue
                 duplicate_reason = None
-                if User.objects.filter(email=email).exists():
+
+                if User.objects.filter(email=email).exists() and User.objects.filter(phone_number=phone_number).exists():
+                    duplicate_reason = 'Email and Phone number already exists'
+                
+                elif User.objects.filter(email=email).exists():
                     duplicate_reason = 'Email already exists'
                 elif User.objects.filter(phone_number=phone_number).exists():
                     duplicate_reason = 'Phone number already exists'
+                    
                 if duplicate_reason:
                     total_duplicate += 1
                     duplicate_rows.append({'row': row, 'reason': duplicate_reason})  # Add duplicate row details and reason to the list
