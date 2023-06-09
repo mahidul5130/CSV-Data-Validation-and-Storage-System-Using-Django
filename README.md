@@ -64,26 +64,34 @@ The CSV Data Validation and Storage System provides several key features to help
 The "Upload CSV File" feature allows users to upload a CSV file containing user data. Upon visiting the designated page, users can select a file using the provided form and click the "Upload" button to initiate the process. The system then validates each row of data to ensure completeness, uniqueness, and data type conformity.
 
 ### Summary Report
-After uploading a CSV file, the system generates a summary report that provides valuable insights into the uploaded data. The report includes
-
- the following information:
+After uploading a CSV file, the system generates a summary report that provides valuable insights into the uploaded data. The report includes the following information:
 
 - Total Data: The total number of rows in the uploaded CSV file.
 - Total Successfully Uploaded: The number of rows that passed the validation process and were successfully stored in the database.
-- Total Duplicate: The number of rows that were identified as duplicates based on unique identifiers.
+- Total Duplicate: The number of rows that were identified as duplicates based on unique identifiers (phone number and email).
 - Total Invalid: The number of rows that contained invalid or incomplete data.
 - Total Incomplete: The number of rows that were missing required fields.
 
 ### Duplicate Rows
-If the uploaded CSV file contains duplicate rows, the system identifies and lists them in a separate section of the summary report. The duplicate rows are displayed in a tabular format, showing the values of each field for easy identification and review.
+If the uploaded CSV file contains duplicate rows based on phone number or email, the system identifies and lists them in a separate section of the summary report. The duplicate rows are displayed in a tabular format, showing the values of each field for easy identification and review. This ensures that no duplicate entries are stored in the database.
 
 ### Invalid Rows
 Similarly, if the uploaded CSV file contains rows with invalid or incomplete data, the system lists them in a dedicated section of the summary report. The invalid rows are displayed in a tabular format, alongside the reasons for their invalidity. This helps users identify and rectify any issues in the data.
 
+The system enforces the following validation conditions:
+
+1. Phone Number Validation: The system checks if the phone number provided in each row is a valid Bangladeshi phone number. It ensures that the phone numbers follow the correct format and adhere to the conventions of Bangladeshi phone numbers.
+
+2. Unique and Valid Email: The system verifies the uniqueness and validity of email addresses in each row. It ensures that each email address is unique across all rows and follows the standard email format.
+
+3. Duplicate Phone and Email Prevention: The system prevents the entry of rows with duplicate phone numbers or email addresses into the database. If a row has a phone number or email that already exists in the database, it is considered a duplicate and excluded from the database storage.
+
+4. Complete Fields: The system checks for the presence of all required fields in each row. If any field is missing or incomplete, the row is flagged as invalid and included in the invalid rows section of the summary report.
+
 ### List Users
 The "List Users" feature allows users to view and search the stored user data. Users can access this feature by clicking the "User List" link in the navigation menu. The page displays a table containing all the stored user records, including their names, email addresses, phone numbers, genders, and addresses.
 
-The page also provides a search form that allows users to filter the displayed records based on various criteria such as name, email, phone number, gender, and address. Users can enter search values in the respective fields and click the "Filter" button to refine the list.
+The page provides a search form that allows users to filter the displayed records based on various criteria such as name, email, phone number, gender, and address. Users can enter search values in the respective fields and click the "Filter" button to refine the list and find specific users based on their attributes.
 
 ### Delete User
 In addition to viewing the list of users, the system allows users to delete specific user records. Each user record in the list is accompanied by a "Delete" button. When clicked, this button triggers a confirmation prompt, and upon confirmation, the corresponding user record is deleted from the database.
