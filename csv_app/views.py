@@ -16,6 +16,9 @@ def upload_csv(request):
             total_duplicate = 0
             total_invalid = 0
             total_incomplete = 0
+            duplicate_rows = []  # List to store details of duplicate rows
+            invalid_rows = []  # List to store details of invalid rows
+
             for row in reader:
                 total_data += 1
                 name = row['name']
@@ -26,26 +29,39 @@ def upload_csv(request):
                 if not all([name, email, phone_number, gender, address]):
                     total_incomplete += 1
                     continue
-                if User.objects.filter(email=email).exists() or User.objects.filter(phone_number=phone_number).exists():
+                duplicate_reason = None
+                if User.objects.filter(email=email).exists():
+                    duplicate_reason = 'Email already exists'
+                elif User.objects.filter(phone_number=phone_number).exists():
+                    duplicate_reason = 'Phone number already exists'
+                if duplicate_reason:
                     total_duplicate += 1
+                    duplicate_rows.append({'row': row, 'reason': duplicate_reason})  # Add duplicate row details and reason to the list
                     continue
                 if not is_valid_bangladeshi_phone_number(phone_number):
                     total_invalid += 1
+                    invalid_rows.append({'row': row, 'reason': 'Invalid phone number'})  # Add invalid row details and reason to the list
                     continue
                 User.objects.create(name=name, email=email, phone_number=phone_number, gender=gender, address=address)
                 total_success += 1
+
             messages.success(request, 'CSV file uploaded successfully.')
             summary = {
                 'total_data': total_data,
                 'total_success': total_success,
                 'total_duplicate': total_duplicate,
                 'total_invalid': total_invalid,
-                'total_incomplete': total_incomplete
+                'total_incomplete': total_incomplete,
+                'duplicate_rows': duplicate_rows,  # Add the duplicate rows list to the summary
+                'invalid_rows': invalid_rows  # Add the invalid rows list to the summary
             }
+
             return render(request, 'csv_app/upload_csv.html', {'form': form, 'summary': summary})
     else:
         form = CSVUploadForm()
     return render(request, 'csv_app/upload_csv.html', {'form': form})
+
+
 
 import re
 
