@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Upload CSV File</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+  {% if summary %}
+    <h3>Summary Report</h3>
+    <p>Total Data: {{ summary.total_data }}</p>
+    <p>Total Successfully Uploaded: {{ summary.total_success }}</p>
+    <p>Total Duplicate: {{ summary.total_duplicate }}</p>
+    <p>Total Invalid: {{ summary.total_invalid }}</p>
+    <p>Total Incomplete: {{ summary.total_incomplete }}</p>
+  {% endif %}
+{% endblock %}
