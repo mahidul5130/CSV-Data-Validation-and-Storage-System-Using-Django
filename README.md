@@ -29,12 +29,12 @@ To run the CSV Data Validation and Storage System locally, follow these steps:
 
 1. **Clone the repository** from GitHub by executing the following command in your terminal or command prompt:
    ```shell
-   git clone https://github.com/your-username/csv-data-validation.git
+   git clone https://github.com/mahidul5130/CSV-Data-Validation-and-Storage-System-Using-Django.git
    ```
 
 2. **Change to the project directory**:
    ```shell
-   cd csv-data-validation
+   cd csv_upload
    ```
 
 3. **Create a virtual environment** (optional but recommended) to keep the project dependencies isolated:
