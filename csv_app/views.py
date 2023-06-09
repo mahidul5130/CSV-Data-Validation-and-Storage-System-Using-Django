@@ -1,5 +1,5 @@
 import csv
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import CSVUploadForm
 from .models import User
@@ -94,3 +94,8 @@ def list_users(request):
         users = users.filter(name__icontains=query)
 
     return render(request, 'csv_app/list_users.html', {'users': users, 'query': query})
+
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    user.delete()
+    return redirect('list_users')
